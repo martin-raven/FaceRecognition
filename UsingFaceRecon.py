@@ -1,5 +1,4 @@
 import face_recognition
-from os import listdir
 import os
 import cv2
 import pickle
@@ -16,7 +15,7 @@ TestData=[]
 if(not(os.path.isfile("TrainingData.pkl"))):
     trainedfile = open('TrainingData.pkl', 'wb')
     Labelfile = open('LabelData.pkl', 'wb')
-    TraningFiles=listdir("TrainingData")
+    TraningFiles=os.listdir("TrainingData")
     for Image in TraningFiles:
         IMAGE=face_recognition.load_image_file("TrainingData"+"/"+Image)
         try:
@@ -31,8 +30,7 @@ else:
     Labelfile = open('LabelData.pkl', 'rb')
     TrainingData=pickle.load(trainedfile);
     labels=pickle.load(Labelfile)
-print(TrainingData)
-TestFiles=listdir("TestData")
+TestFiles=os.listdir("TestData")
 for Image in TestFiles:
     IMAGE=face_recognition.load_image_file("TestData"+"/"+Image)
     try:
